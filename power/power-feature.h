@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#ifndef _POWER_FEATURE_H
-#define _POWER_FEATURE_H
-
 #include <hardware/power.h>
 
 void set_device_specific_feature(struct power_module *module, feature_t feature, int state);
