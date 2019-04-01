@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MCCMNCTABLE>
+<MNCS MCCMNC="732103" ENS="123" /><!--Tigo -->
+<MNCS MCCMNC="732111" ENS="123" /><!--Tigo -->
+<MNCS MCCMNC="732123" ENS="123" /><!--Movistar,Tigo -->
+<MNCS MCCMNC="370001" ENS="119,999" /><!--Dominican Republic, Orange-->
+<MNCS MCCMNC="370002" ENS="115,118,120,122,128,66" /><!--Claro-->
+<MNCS MCCMNC="70401" ENS="122" /><!--Guatemala, Claro-->
+<MNCS MCCMNC="70403" ENS="122" /><!--Guatemala, IKANGEROW-1788 add Movistar-->
+<MNCS MCCMNC="33420" ENS="060" /><!--Mexico, Telcel-->
+<MNCS MCCMNC="33403" ENS="066" /><!--Mexico Nextel, Movistar-->
+<MNCS MCCMNC="33430" ENS="066" /><!--Mexico Nextel, Movistar-->
+<MNCS MCCMNC="33490" ENS="066" /><!--Mexico Nextel, Movistar-->
+<MNCS MCCMNC="33450" ENS="060,066" /><!--Mexico, Iusacell-->
+<MNCS MCCMNC="71606" ENS="105" /><!--Peru, Movistar,Claro-->
+<MNCS MCCMNC="71610" ENS="105" /><!--Peru, Movistar,Claro-->
+<MNCS MCCMNC="73401" ENS="171" /><!-- Venezuela,Digitel -->
+<MNCS MCCMNC="73402" ENS="171" /><!-- Venezuela,Digitel -->
+<MNCS MCCMNC="73403" ENS="171" /><!-- Venezuela,Digitel -->
+<MNCS MCCMNC="73404" ENS="*1,*171" /><!-- Venezuela,Movilnet -->
+<MNCS MCCMNC="73406" ENS="*1,*171" /><!-- Venezuela,Movilnet -->
+</MCCMNCTABLE>

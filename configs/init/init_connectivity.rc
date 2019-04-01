@@ -1,0 +1,26 @@
+# MTK connectivity .rc configure
+
+on boot
+
+# WMT
+service wmt_loader /vendor/bin/wmt_loader
+    class core
+    user root
+    group root
+    oneshot
+
+service wmt_launcher /vendor/bin/wmt_launcher -p /vendor/firmware/
+    user system
+    group system
+    class core
+
+on property:service.wcn.coredump.mode=2
+start stp_dump
+
+service stp_dump /vendor/bin/stp_dump3
+    user root
+    group root
+    class core
+    disabled
+    oneshot
+
