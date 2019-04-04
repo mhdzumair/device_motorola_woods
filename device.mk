@@ -33,7 +33,7 @@ $(call inherit-product, $(LOCAL_PATH)/panelli.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Inherit device specific proprietary vendor configuration
-$(call inherit-product, vendor/motorola/panelli/panelli-vendor.mk)
+$(call inherit-product, vendor/moto/panelli/panelli-vendor.mk)
 
 # Inherit Lineage vendor configuration
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
