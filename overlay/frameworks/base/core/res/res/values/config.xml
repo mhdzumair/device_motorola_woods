@@ -183,7 +183,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">83</integer>
+    <add-resource type="integer" name="config_deviceHardwareKeys">83</integer>
 
     <!-- Enable doze mode
          ComponentName of a dream to show whenever the system would otherwise have
