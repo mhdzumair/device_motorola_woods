@@ -31,7 +31,6 @@ $(call inherit-product, $(LOCAL_PATH)/panelli.mk)
 
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Inherit device specific proprietary vendor configuration
 $(call inherit-product, vendor/moto/panelli/panelli-vendor.mk)
