@@ -1,24 +1,38 @@
-Device Tree for Motorola Moto E4 Plus
+Device Tree for Motorola Moto C Plus
 ===========================================
 
-The Motorola Moto E4 Plus (codenamed _"nicklaus"_) is a mid-range smartphone from Motorola.
-Click here to see [Building manual](https://github.com/LineageOS-MediaTek/android_device_motorola_nicklaus/tree/cm-14.1/MANUAL.md)
+The Motorola Moto C Plus (codenamed _panelli_) is a low-end smartphone from Motorola.
+Click here to see the [building manual](https://github.com/TheGreat2201/lineage_device-panelli/tree/lineage-15.1/MANUAL.md)
 
-Basic   | Spec Sheet
+## Device Tree for Motorola Moto C Plus [panelli]
+
+Basic | Spec Sheet
 -------:|:-------------------------
-CPU     | Quad-core 1.3 GHz Cortex-A53
-Chipset | MediaTek MT6737M
-GPU     | Mali-T720 MP2
-Memory  | 2GB RAM
-Shipped Android Version | 7.1
-Storage | 16/32GB
-MicroSD | Up to 128GB
-Battery | 5000mAh
-Display | 720 x 1280 pixels, 5.5 inches
-Camera  | Main 13MP / Front 5MP, autofocus, LED flash
+CPU | Cortex-A53 [Quad-core 1.3 GHz]
+Chipset | MediaTek MT6737
+GPU | Mali-T720MP2
+RAM | 1/2 GB
+Display | 5.0 inches
+Storage | 16 GB
+MicroSD | Dedicated, Up to 32GB
+Resolution | 720 x 1280 pixels
+SIM | Single/Dual SIM (Nano-SIM)
+Battery | Li-Pol 4000mAh battery
+Camera | Main 8MP / Front 2MP, 720p@30fps
+Sensors | Acccelerometer
+Shipped Android Version | Android 7.0 (Nougat)
 
-![Moto E4 Plus](http://drop.ndtv.com/TECH/product_database/images/6132017104528AM_635_motoe4plusdb.jpeg "Moto E4 Plus")
+## Applying/Removing patches
+Run command from root directory of ROM source.
+
+Apply - `./device/motorola/panelli/patches/lineage/install.sh`
+
+Remove - `./device/motorola/panelli/patches/lineage/uninstall.sh`
 
 
+## Credits
+Thanks to [@LinuxPanda](https://github.com/LinuxPanda) for these trees and all his help.
 
+Thanks to [@DhirajSurvase](https://github.com/DhirajSurvase) for all the initial work and bringing up Nougat for panelli.
 
+Thanks to [@SamarV-121](https://github.com/SamarV-121) for helping to bring up panelli with shims.

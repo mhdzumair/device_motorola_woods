@@ -23,8 +23,8 @@ chmod a+x ~/bin/repo
 ```
 #### Create source directory 
 ```
-mkdir ~/cm-14.1
-cd ~/cm-14.1
+mkdir ~/lineage-15.1.1
+cd ~/lineage-15.1
 ```
 #### Configure Git
 ```
@@ -33,19 +33,14 @@ git config --global user.name "git_username"
 ```
 #### Initialize Repo:
 ```
-repo init -u git://github.com/LineageOS/android.git -b cm-14.1
+repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
 ```
 #### Sync sources (it may require some hours)
 ```
 repo sync -c -f -q -j8 --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 ``` 
 #### Clone necessary trees
-```
-git clone https://github.com/LineageOS-MediaTek/android_device_motorola_nicklaus -b cm-14.1 device/motorola/nicklaus
-git clone https://github.com/LineageOS-MediaTek/android_device_mediatek_mt6737-common -b cm-14.1 device/mediatek/mt6737-common
-git clone https://github.com/LineageOS-MediaTek/proprietary_vendor_motorola -b cm-14.1 vendor/motorola
-git clone https://github.com/LineageOS-MediaTek/android_kernel_motorola_nicklaus kernel/motorola/nickalaus
-```
+
 ## Building Source
 
 #### Enable ccache for Improve speed of build
@@ -69,6 +64,6 @@ export ANDROID_JACK_VM_ARGS="-Xmx4096m -Xms512m -Dfile.encoding=UTF-8 -XX:+Tiere
 #### Start building :) 
 ```
 . build/envsetup.sh 
-breakfast nicklaus
+breakfast panelli
 make -j8 bacon | tee build.log
 ```
