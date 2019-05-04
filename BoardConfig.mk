@@ -224,9 +224,11 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_SEPOLICY_DIRS := \
        $(DEVICE_PATH)/sepolicy
 
-#HIDL
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/hidl/manifest.xml
-#DEVICE_MATRIX_FILE := $(DEVICE_PATH)/hidl/compatibility_matrix.xml
+# Camera
+#TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_mtk
+TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
+TARGET_USES_NON_TREBLE_CAMERA := true
 
 #allow missing dependencies
 ALLOW_MISSING_DEPENDENCIES ?= true
