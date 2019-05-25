@@ -22,13 +22,10 @@ PRODUCT_MANUFACTURER := Motorola
 
 # Maintainer Prop
 PRODUCT_BUILD_PROP_OVERRIDES += \
-DEVICE_MAINTAINERS="MhD ZuMAiR"
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
+    DEVICE_MAINTAINERS="MhD ZuMAiR"
     BUILD_FINGERPRINT=motorola/woods/woods:7.1.1/NMA26.42-113/133:user/release-keys \
     PRIVATE_BUILD_DESC="woods_retail-user 7.1.1 NMA26.42-11-3 release-keys"
-
-PRODUCT_GMS_CLIENTID_BASE := android-motorola
+    PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
 # Available languages
 PRODUCT_LOCALES := en_US en_GB ru_RU uk_UA tr_TR sk_SK vi_VN fr_FR ar_EG pt_BR
