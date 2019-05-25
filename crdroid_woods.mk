@@ -20,6 +20,10 @@ PRODUCT_BRAND := Motorola
 PRODUCT_MODEL := Moto E4
 PRODUCT_MANUFACTURER := Motorola
 
+# Maintainer Prop
+PRODUCT_BUILD_PROP_OVERRIDES += \
+DEVICE_MAINTAINERS="MhD ZuMAiR"
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT=motorola/woods/woods:7.1.1/NMA26.42-113/133:user/release-keys \
     PRIVATE_BUILD_DESC="woods_retail-user 7.1.1 NMA26.42-11-3 release-keys"
