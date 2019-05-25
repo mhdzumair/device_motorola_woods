@@ -1,3 +1,3 @@
 #
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_woods.mk
+    $(LOCAL_DIR)/crdroid_woods.mk

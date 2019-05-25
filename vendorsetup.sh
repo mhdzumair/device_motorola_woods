@@ -1,6 +1,6 @@
 #
 for var in eng user userdebug; do
-  add_lunch_combo aosp_woods-$var
+  add_lunch_combo crdroid_woods-$var
 done
 
 # Patches
