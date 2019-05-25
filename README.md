@@ -21,6 +21,10 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 
 Credit : 
 - @darklord4822
+- @IzaqKull
+- @Mohamed_Zumair
+- @RebelLion420
+- @SamarV121
 
 ### Working:
 - [x] All...
