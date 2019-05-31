@@ -119,6 +119,13 @@ PRODUCT_PACKAGES += \
     libion \
     fingerprintd
 
+#MiXplorer
+PRODUCT_PACKAGES += \
+    MiXplorer
+
+#Google Messaging
+PRODUCT_PACKAGES += \
+    Messaging
 # Doze
 #PRODUCT_PACKAGES += \
     #MotoDoze
