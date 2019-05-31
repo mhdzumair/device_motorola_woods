@@ -4,7 +4,7 @@
 PRODUCT_RELEASE_NAME := woods
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/dot/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/motorola/woods/device_woods.mk)
@@ -15,7 +15,7 @@ DEVICE_RESOLUTION := 720x1280
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := woods
-PRODUCT_NAME := lineage_woods
+PRODUCT_NAME := dot_woods
 PRODUCT_BRAND := Motorola
 PRODUCT_MODEL := Moto E4
 PRODUCT_MANUFACTURER := Motorola
