@@ -307,3 +307,7 @@ PRODUCT_PACKAGES += \
     libmtk_omx_shim \
     libmtk_camera \
     libmtk_log_shim
+
+#Disable rescue party
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.disable_rescue=true

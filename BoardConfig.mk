@@ -108,14 +108,8 @@ BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
 # Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT := true
       WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-    endif
-  endif
-endif
 
 # Charger
 WITH_LINEAGE_CHARGER := false

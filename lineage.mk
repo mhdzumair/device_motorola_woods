@@ -37,9 +37,9 @@ PRODUCT_MANUFACTURER := Motorola
 
 #PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 
-#PRODUCT_BUILD_PROP_OVERRIDES += \
-    #BUILD_FINGERPRINT=motorola/woods/woods:7.1.1/NMA26.42-113/133:user/release-keys \
-    #PRIVATE_BUILD_DESC="woods_retail-user 7.1.1 NMA26.42-11-3 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_FINGERPRINT=motorola/woods/woods:7.1.1/NMA26.42-113/133:user/release-keys \
+    PRIVATE_BUILD_DESC="woods_retail-user 7.1.1 NMA26.42-11-3 release-keys"
 
     #PRODUCT_NAME="Moto E4"
 
