@@ -116,3 +116,10 @@ ro.longcheer.simsum=2
 ro.longcheer.thermal=1
 ro.boot.opt_eccci_c2k=0
 media.settings.xml=/vendor/etc/media_profiles.xml
+
+#get the logcat
+ro.secure=0
+ro.debuggable=1
+persist.service.adb.enable=1
+persist.sys.usb.config=mtp,adb
+ro.adb.secure=0
