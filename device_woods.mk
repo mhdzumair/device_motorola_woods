@@ -296,3 +296,8 @@ PRODUCT_PACKAGES += \
     busybox \
     log-kmsg.sh \
     init_orig
+    libmtk_camera
+
+#Disable rescue party
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.disable_rescue=true
