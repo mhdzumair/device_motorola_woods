@@ -320,7 +320,6 @@ allow atcp vfat:file create_file_perms;
 #=========================================================
 #modem logger permission in storage in android M version
 #=========================================================
-allow atcp log_device:chr_file { write open };
 allow atcp mnt_user_file:dir search;
 allow atcp mnt_user_file:lnk_file read;
 #allow atcp storage_file:dir search;
