@@ -31,7 +31,7 @@ allow bluetooth proc_secmem:file { read open };
 # Purpose: Allow bluetooth to access surfaceflinger
 allow bluetooth surfaceflinger:fifo_file { read write };
 
-#allow bluetooth rilproxy:unix_stream_socket connectto;
+allow bluetooth rilproxy:unix_stream_socket connectto;
 # ==============================================
 # MTK Policy Rule
 # ==============================================

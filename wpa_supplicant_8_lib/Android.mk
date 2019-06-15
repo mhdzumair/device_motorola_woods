@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+###################################################################################
+##### This Makefile include Google pure SUPPLICANT and MTK Turnkey SUPPLICANT #####
+###################################################################################
 LOCAL_PATH := $(call my-dir)
 
 ##### For Google SUPPLICANT #####

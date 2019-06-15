@@ -184,7 +184,7 @@ allow atcp gpu_device:chr_file { read write open ioctl getattr };
 #allow atcp CAM_CAL_DRV1_device:chr_file { read write open };
 allow atcp pq:binder call;
 allow atcp rilproxy_atci_socket:sock_file write;
-#allow atcp rilproxy:unix_stream_socket connectto;
+allow atcp rilproxy:unix_stream_socket connectto;
 allow atcp self:capability sys_time;
 #
 # Ref. atcid.te (End)
@@ -320,6 +320,7 @@ allow atcp vfat:file create_file_perms;
 #=========================================================
 #modem logger permission in storage in android M version
 #=========================================================
+allow atcp log_device:chr_file { write open };
 allow atcp mnt_user_file:dir search;
 allow atcp mnt_user_file:lnk_file read;
 #allow atcp storage_file:dir search;
@@ -393,6 +394,7 @@ allow atcp data_tmpfs_log_file:file create_file_perms;
 # Date : WK15.29
 # Operation : Migration
 # Purpose : for device bring up, not to block early migration
+allow atcp log_device:chr_file r_file_perms;
 allow atcp storage_file:dir create_dir_perms;
 allow atcp storage_file:file create_file_perms;
 allow atcp storage_file:lnk_file create_file_perms;

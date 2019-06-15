@@ -1,4 +1,4 @@
-# Change partition permission
+#change partition permission
 /dev/block/mmcblk0                                              0660    root    system
 /dev/block/mmcblk0boot0                                         0660    root    system
 /dev/block/mmcblk0boot1                                         0660    root    system
@@ -14,28 +14,31 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo      0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp       0660    root    system
 
+# Video
+/dev/Vcodec               0660   mediacodec      system
+
 # OTP
-/dev/otp                  0660  system      system
+/dev/otp                 0660 system system
 
 # Connectivity
 /dev/stpwmt               0660   system     system
-/dev/wmtdetect            0660   system     system
+/dev/wmtdetect            0660   system       system
 
 # BT
-/dev/stpbt                0660   bluetooth  net_bt_stack
+/dev/stpbt                0660   bluetooth  bluetooth
 
 # GPS
-/dev/stpgps               0660  gps         gps
-/dev/gps                  0660  gps         system
+/dev/stpgps               0660   gps        gps
+/dev/gps                  0660   gps        system
 
 # ANT
-/dev/stpant				  0660  system      system
+/dev/stpant               0660   system     system
 
 # WIFI
-/dev/wmtWifi              0660   system     system
+/dev/wmtWifi              0660   wifi       wifi
 
 # FMRadio
-/dev/fm			          0660  system	   media
+/dev/fm                   0660   media     media
 
 # NFC
 /dev/msr3110              0666   root       root
@@ -57,7 +60,6 @@
 
 # Anyone can read the logs, but if they're not in the "logs"
 # group, then they'll only see log entries for their UID.
-/dev/xLog                 0600   root       root
 /dev/log/ksystem          0600   root       log
 
 /dev/ccci*                0660   radio      radio
@@ -72,7 +74,6 @@
 /dev/ccci_aud             0660   audio      audio
 /dev/ccci2_aud            0660   audio      audio
 /dev/eemcs_aud            0660   audio      audio
-/dev/tfa9897		  	  0660	 media	    media
 /dev/irtx                 0660   system     system
 /dev/ir-learning          0660   system     system
 

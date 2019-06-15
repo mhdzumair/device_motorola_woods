@@ -7,7 +7,6 @@ ro.board.platform=mt6737m
 #
 ro.sf.lcd_density=320
 persist.sys.lcd_density=320
-
 ro.opengles.version=196610
 
 # USB MTP WHQL
@@ -15,6 +14,9 @@ ro.sys.usb.mtp.whql.enable=0
 
 # Power off opt in IPO
 sys.ipo.pwrdncap=2
+
+ro.sys.usb.storage.type=mtp,adb
+ro.vold.umsdirtyratio=20
 
 # USB BICR function
 ro.sys.usb.bicr=no
@@ -27,6 +29,10 @@ ro.camera.sound.forced=0
 ro.audio.silent=0
 
 ro.zygote.preload.enable=0
+
+persist.sys.strictmode.visual=0
+persist.sys.strictmode.disable=1
+ro.boot.selinux=disable
 
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
@@ -55,13 +61,11 @@ persist.sys.scrollingcache=2
 qemu.hw.mainkeys=0
 
 # Wifi
-mediatek.wlan.chip=CONSYS_MT6735
-mediatek.wlan.ctia=0
-mediatek.wlan.module.postfix=_consys_mt6735
-ro.mediatek.wlan.wsc=1
-ro.mediatek.wlan.p2p=1
-wifi.interface=wlan0
-wifi.direct.interface=p2p0
+mediatek.wlan.chip=CONSYS_MT6735 mediatek.wlan.ctia=0 
+mediatek.wlan.module.postfix=_consys_mt6735 
+ro.mediatek.wlan.wsc=1 ro.mediatek.wlan.p2p=1 
+wifi.interface=wlan0 wifi.direct.interface=p2p0
+qemu.hw.mainkeys=1
 ##
 
 ro.mtk_gps_support=1
@@ -76,6 +80,10 @@ ro.mtk_perfservice_support=1
 ro.mtk_bt_support=1
 ro.mtk_bsp_package=1
 wfd.dummy.enable=1
+mtk.vdec.waitkeyframeforplay=1
+ro.media.maxmem=500000000
+ro.nxpnfc.feature=1
+mdc_initial_max_retry=10
 
 # Telephony
 rild.libpath=mtk-ril.so

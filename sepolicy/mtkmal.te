@@ -46,7 +46,7 @@ allow mtkmal devpts:chr_file { getattr setattr };
 allow mtkmal self:netlink_route_socket { bind create write nlmsg_read };
 
 # RILPROXY
-#allow mtkmal rilproxy:unix_stream_socket connectto;
+allow mtkmal rilproxy:unix_stream_socket connectto;
 
 # RILD connection
 allow mtkmal mtkrild:unix_stream_socket connectto;

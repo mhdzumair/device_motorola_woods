@@ -133,4 +133,4 @@ allow untrusted_app etsd:binder {call transfer};
 # Date: 2016/5/16
 # Operator: New feature for eMBMS middleware integration
 # Purpose: allow vendor's eMBMS middleware APK to send AT-command via embmsd local socket
-#unix_socket_connect(untrusted_app, rild_embms, rilproxy)
+unix_socket_connect(untrusted_app, rild_embms, rilproxy)

@@ -40,6 +40,9 @@ TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
 TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
 endif
 
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := mt6737m
+
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -117,6 +120,10 @@ TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Graphics
 BOARD_EGL_CFG := $(DEVICE_PATH)/configs/etc/egl.cfg
+#BOARD_GLOBAL_CFLAGS += -DMTK_HARDWARE
+#BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
+
+
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -147,6 +154,10 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
+
+# Lineage Hardware
+BOARD_HARDWARE_CLASS += device/motorola/namath/lineagehw
+
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -210,12 +221,22 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/recovery.fstab
 
 # TWRP-specific
 ifeq ($(RECOVERY_VARIANT), twrp)
+
+TARGET_LDPRELOAD += mtk_symbols.so
+TARGET_LDPRELOAD += libmtk_symbols.so
+
+# CWM
+TARGET_RECOVERY_FSTAB := device/motorola/namath/rootdir/recovery.fstab
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+# TWRP stuff
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 TW_MAX_BRIGHTNESS := 255
+TW_EXCLUDE_SUPERSU := true
 TW_INCLUDE_FB2PNG := true
 TW_NO_CPU_TEMP := true
 TW_REBOOT_BOOTLOADER := true

@@ -256,7 +256,7 @@ allow platform_app program_binary_service:service_manager find;
 # Date: 2016/5/16
 # Operator: New feature for eMBMS middleware integration
 # Purpose: allow vendor's eMBMS middleware APK to send AT-command via embmsd local socket
-#unix_socket_connect(platform_app, rild_embms, rilproxy)
+unix_socket_connect(platform_app, rild_embms, rilproxy)
 
 # Date: 2016/5/16
 # Operator: Allow eMBMS middleware install vzw SDK library

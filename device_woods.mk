@@ -55,7 +55,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.manual_sensor.xml:system/etc/permissions/android.hardware.camera.manual_sensor.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml
 
-# Media	
+# Media
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/vendor/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/vendor/etc/media_codecs_google_telephony.xml \
@@ -71,13 +71,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:system/vendor/etc/audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/audio/a2dp_audio_policy_configuration.xml:/system/vendor/etc/a2dp_audio_policy_configuration.xml
 
-# Media	
+# Media
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
-    
+
 # Camera permissions from Motorola
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/moto/configs/com.motorola.camera.xml:system/etc/permissions/com.motorola.camera.xml \
@@ -88,7 +88,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/seccomp/mediaextractor.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
-    
+
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hidl/manifest.xml:system/vendor/manifest.xml
@@ -141,7 +141,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.boot.wificountrycode=00
 
-     
+
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
@@ -150,16 +150,16 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     charger_res_images \
     libion
-    
+
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
-    
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service
-    
+
 # Camera HAL
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -168,19 +168,19 @@ PRODUCT_PACKAGES += \
     #camera.device@3.2-impl \
 
 # FM Radio
-PRODUCT_PACKAGES += \
-    android.hardware.broadcastradio@1.0-impl \
-    FMRadio \
-    libfmjni
+#PRODUCT_PACKAGES += \
+#    android.hardware.broadcastradio@1.0-impl \
+#    FMRadio \
+#    libfmjni
 
 # Camera
-PRODUCT_PACKAGES += \
-    Snap
+#PRODUCT_PACKAGES += \
+#    Snap
 
 # CM14 mtk symbols
 PRODUCT_PACKAGES += \
     mtk_symbols
-    
+
 # Fingerprint HAL & pack
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service \
@@ -192,16 +192,16 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.mt6737m
-    
+
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
-    
+
 # Keymaster HAL
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
-    
+#PRODUCT_PACKAGES += \
+#    android.hardware.keymaster@3.0-impl
+
 # Sensors HAL
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
@@ -209,28 +209,28 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
     lights.mt6737m
-    
+
 # GPS HAL
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl
-    
+
 # GPS force mode
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.force.gps.mode=gnss
-    
+
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
-    
+
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl \
     android.hardware.health@1.0-service
-    
+
 # Power HAL
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl
-    
+
 # Graphic HAL
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -268,7 +268,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=0
-    
+
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hw.gyroscope=false \
@@ -277,7 +277,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	media.stagefright.use-awesome=false
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp
+	persist.sys.usb.config=mtp,adb
 
 # Keyhandler package
 PRODUCT_PACKAGES += \
@@ -295,9 +295,13 @@ WITH_SU := true
 PRODUCT_PACKAGES += \
     busybox \
     log-kmsg.sh \
-    init_orig
+    init_orig \
     libmtk_camera
 
 #Disable rescue party
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.disable_rescue=true
+
+# RIL
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0

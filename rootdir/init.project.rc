@@ -212,7 +212,7 @@ service atci_service /vendor/bin/atci_service
 	user root 
         disabled
 	group radio system  
-	
+
 service atcid-daemon-u /vendor/bin/atcid
 	user system
 	group radio system media
@@ -228,7 +228,6 @@ service atcid-daemon-e /vendor/bin/atcid
 on early_property:ro.build.type=eng
 start atci_service
 start atcid-daemon-e
-
 service audio-daemon /vendor/bin/audiocmdservice_atci
     class main
     socket atci-audio stream 660 media system
@@ -243,3 +242,19 @@ on property:persist.sys.runin=enable
 
 on property:persist.sys.runin=disable
     write /sys/class/power_supply/battery/device/BatteryTestStatus 0
+
+#add 20161025
+service version_switch /system/vendor/bin/vs parse
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:persist.ril.bcode=set
+    start version_switch
+
+on property:service.nvram_init=Ready
+    start version_switch
+
+
+
