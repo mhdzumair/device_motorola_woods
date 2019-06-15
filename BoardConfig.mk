@@ -155,15 +155,12 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
 
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += device/motorola/namath/lineagehw
-
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/motorola/woods/ril/
+BOARD_RIL_CLASS := $(DEVICE_PATH)/ril/
 
 # HWC2 by default
 TARGET_USES_HWC2 := true
