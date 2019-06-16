@@ -393,7 +393,6 @@ allow atcp data_tmpfs_log_file:file create_file_perms;
 # Date : WK15.29
 # Operation : Migration
 # Purpose : for device bring up, not to block early migration
-allow atcp log_device:chr_file r_file_perms;
 allow atcp storage_file:dir create_dir_perms;
 allow atcp storage_file:file create_file_perms;
 allow atcp storage_file:lnk_file create_file_perms;

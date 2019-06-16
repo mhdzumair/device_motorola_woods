@@ -11,11 +11,11 @@ Change-Id: Ib73e61d5698ad3228c1b41518cf73c497cf2da2e
  init/init.h                        |   2 +-
  libcutils/Android.bp               |   2 +-
  libcutils/fs_config.cpp            |   4 +-
- libcutils/xlog.c             |  27 ++++
+ libcutils/mtk_xlog.cpp             |  27 ++++
  libnetutils/ifc_utils.c            | 315 +++++++++++++++++++++++++++++++++++++
  libnetutils/include/netutils/ifc.h |  13 ++
  9 files changed, 368 insertions(+), 5 deletions(-)
- create mode 100644 libcutils/xlog.c
+ create mode 100644 libcutils/mtk_xlog.cpp
 
 diff --git a/gatekeeperd/Android.mk b/gatekeeperd/Android.mk
 index 28f0b07..7ba8505 100644
@@ -82,7 +82,7 @@ index d00ff5f..015774e 100644
                  "qtaguid.c",
                  "trace-dev.c",
                  "uevent.c",
-+                "xlog.c",
++                "mtk_xlog.cpp",
              ],
              sanitize: {
                  misc_undefined: ["integer"],
@@ -109,11 +109,11 @@ index cb15b57..f77a293 100644
  
      // Support hostapd administering a network interface.
      { 00755, AID_WIFI,      AID_WIFI,      CAP_MASK_LONG(CAP_NET_ADMIN) |
-diff --git a/libcutils/xlog.c b/libcutils/xlog.c
+diff --git a/libcutils/mtk_xlog.cpp b/libcutils/mtk_xlog.cpp
 new file mode 100644
 index 0000000..7462451
 --- /dev/null
-+++ b/libcutils/xlog.c
++++ b/libcutils/mtk_xlog.cpp
 @@ -0,0 +1,27 @@
 +#include <cutils/log.h>
 +

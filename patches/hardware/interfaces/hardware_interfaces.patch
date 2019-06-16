@@ -1,18 +1,5 @@
-From cea49ddcff404279921d1fdbeae16703bda1213a Mon Sep 17 00:00:00 2001
-From: darklord4822 <darklord4722@gmail.com>
-Date: Sun, 18 Feb 2018 08:52:32 +0000
-Subject: [PATCH] changes for MTK
-
-Change-Id: Ib60cbc88fef28a902f82d7c47a515484dac53976
----
- audio/2.0/default/Android.mk               | 4 ++++
- audio/2.0/default/StreamOut.cpp            | 3 +++
- camera/device/1.0/default/CameraDevice.cpp | 5 ++++-
- sensors/1.0/default/Sensors.cpp            | 2 +-
- 4 files changed, 12 insertions(+), 2 deletions(-)
-
 diff --git a/audio/2.0/default/Android.mk b/audio/2.0/default/Android.mk
-index 8dec482..8fc5131 100644
+index 8dec4820..8fc51316 100644
 --- a/audio/2.0/default/Android.mk
 +++ b/audio/2.0/default/Android.mk
 @@ -51,6 +51,10 @@ LOCAL_HEADER_LIBRARIES := \
@@ -27,7 +14,7 @@ index 8dec482..8fc5131 100644
  
  #
 diff --git a/audio/2.0/default/StreamOut.cpp b/audio/2.0/default/StreamOut.cpp
-index 22dcd0c..81f1d58 100644
+index 22dcd0c9..81f1d585 100644
 --- a/audio/2.0/default/StreamOut.cpp
 +++ b/audio/2.0/default/StreamOut.cpp
 @@ -488,6 +488,9 @@ Result StreamOut::getPresentationPositionImpl(audio_stream_out_t* stream,
@@ -41,7 +28,7 @@ index 22dcd0c..81f1d58 100644
      struct timespec halTimeStamp;
      retval = Stream::analyzeStatus("get_presentation_position",
 diff --git a/camera/device/1.0/default/CameraDevice.cpp b/camera/device/1.0/default/CameraDevice.cpp
-index a03bbc8..d02fe63 100644
+index 116963b9..d06c8930 100644
 --- a/camera/device/1.0/default/CameraDevice.cpp
 +++ b/camera/device/1.0/default/CameraDevice.cpp
 @@ -36,6 +36,8 @@ using ::android::hardware::graphics::common::V1_0::PixelFormat;
@@ -62,8 +49,8 @@ index a03bbc8..d02fe63 100644
      if (object->mDeviceCallback == nullptr) {
          ALOGE("%s: camera HAL request memory while camera is not opened!", __FUNCTION__);
          return nullptr;
-@@ -669,6 +671,7 @@ Return<Status> CameraDevice::open(const sp<ICameraDeviceCallback>& callback) {
-     mDeviceCallback = callback;
+@@ -717,6 +719,7 @@ Return<Status> CameraDevice::open(const sp<ICameraDeviceCallback>& callback) {
+ #endif
  
      if (mDevice->ops->set_callbacks) {
 +        sUser = this;
@@ -71,7 +58,7 @@ index a03bbc8..d02fe63 100644
                  sNotifyCb, sDataCb, sDataCbTimestamp, sGetMemory, this);
      }
 diff --git a/sensors/1.0/default/Sensors.cpp b/sensors/1.0/default/Sensors.cpp
-index 1100dd6..c41a744 100644
+index 1100dd6a..88a93ae4 100644
 --- a/sensors/1.0/default/Sensors.cpp
 +++ b/sensors/1.0/default/Sensors.cpp
 @@ -95,7 +95,7 @@ Sensors::Sensors()
@@ -83,6 +70,3 @@ index 1100dd6..c41a744 100644
  
      if (getHalDeviceVersion() == SENSORS_DEVICE_API_VERSION_1_4) {
          if (mSensorDevice->inject_sensor_data == nullptr) {
--- 
-1.9.1
-

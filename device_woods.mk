@@ -305,3 +305,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0
+
+KBUILD_CFLAGS  := -Wno-missing-field-initializers
