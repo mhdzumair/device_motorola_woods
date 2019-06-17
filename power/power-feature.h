@@ -18,4 +18,3 @@
 
 void set_device_specific_feature(struct power_module *module, feature_t feature, int state);
 
-#endif

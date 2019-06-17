@@ -47,3 +47,14 @@ PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
 # Available languages
 PRODUCT_LOCALES := en_US en_GB ru_RU uk_UA tr_TR sk_SK vi_VN fr_FR ar_EG pt_BR
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
+	ro.crypto.state=unencrypted \
+        ro.mount.fs=EXT4 \
+	ro.secure=0 \
+        ro.adb.secure=0 \
+	ro.allow.mock.location=1 \
+        ro.debuggable=1 \
+	persist.sys.usb.config = mtp,adb \
+	persist.service.adb.enable=1 \
+	persist.service.debuggable=1
