@@ -63,5 +63,3 @@ tedongleservice             u:object_r:radio_service:s0
 
 # add for fingerprint ET3XX
 egistec.ets.service.daemon u:object_r:etsd_service:s0
-
-

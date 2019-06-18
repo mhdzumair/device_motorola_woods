@@ -53,3 +53,10 @@ on post-fs-data
 #
 #  Modem related services (End)
 #
+    # Encrypt phone function
+    setprop vold.post_fs_data_done 1
+
+
+on property:ril.muxreport=1
+    start muxreport-daemon
+

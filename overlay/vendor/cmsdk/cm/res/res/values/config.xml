@@ -47,4 +47,7 @@
    <!-- Default, comma-delimited, quick settings tiles. See QSConstants.java for a list of all available tiles -->
    <string name="config_defaultQuickSettingsTiles">cell,wifi,bt,location,nfc,airplane,flashlight,rotation,edit</string>
     
+    <!-- Turn on LiveDisplay auto mode by default -->
+        <integer name="config_defaultLiveDisplayMode">2</integer>
 </resources>
+

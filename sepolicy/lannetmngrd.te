@@ -49,24 +49,6 @@ allow lannetmngrd lannetmngrd_prop:property_service set;
 allow lannetmngrd platform_app:fd use;
 
 
-# Date : WK14.37
-# Operation : Migration
-# Purpose :  PPPOE Test 
-#allow lannetmngrd ppp:process sigkill;
-
-# Date : WK14.39
-# Operation : Migration
-# Purpose :  MDLogger USB logging
-#allow lannetmngrd mdlogger:fd use;
-#allow lannetmngrd mdlogger:tcp_socket { read write };
-#allow lannetmngrd mdlogger:tcp_socket { getopt setopt };
-
-# Date : WK14.41
-# Operation : Migration
-# Purpose :  network logging
-#allow lannetmngrd netdiag:fd use;
-#allow lannetmngrd netdiag:udp_socket { read write getopt setopt};
-
 
 # Date : WK14.41
 # Operation : Migration

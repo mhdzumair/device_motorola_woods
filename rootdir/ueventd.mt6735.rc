@@ -1,10 +1,13 @@
 # Change partition permission
+#change partition permission
 /dev/block/mmcblk0                                              0660    root    system
 /dev/block/mmcblk0boot0                                         0660    root    system
 /dev/block/mmcblk0boot1                                         0660    root    system
 /dev/misc-sd                                                    0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/misc2     0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot      0640    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot_a    0640    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot_b    0640    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/recovery  0640    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/secro     0640    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/seccfg    0660    root    system
@@ -13,29 +16,29 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/para      0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo      0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp       0660    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/odmdtbo   0660    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/odmdtbo_a 0660    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/odmdtbo_b 0660    root    system
 
 # OTP
-/dev/otp                  0660  system      system
+/dev/otp                  0660   system     system
 
 # Connectivity
 /dev/stpwmt               0660   system     system
 /dev/wmtdetect            0660   system     system
 
 # BT
-/dev/stpbt                0660   bluetooth  net_bt_stack
+/dev/stpbt                0660   bluetooth  bluetooth
 
 # GPS
-/dev/stpgps               0660  gps         gps
-/dev/gps                  0660  gps         system
-
-# ANT
-/dev/stpant				  0660  system      system
+/dev/stpgps               0660   gps        gps
+/dev/gps                  0660   gps        system
 
 # WIFI
-/dev/wmtWifi              0660   system     system
+/dev/wmtWifi              0660   wifi     wifi
 
 # FMRadio
-/dev/fm			          0660  system	   media
+/dev/fm                   0666   media     media
 
 # NFC
 /dev/msr3110              0666   root       root
@@ -46,6 +49,27 @@
 
 # Trusty driver
 /dev/trusty-ipc-dev0      0660   system     keystore
+
+# RPMB (for Trusty)
+/dev/block/mmcblk0rpmb    0660   root       system
+
+# TrustonicTEE driver
+/dev/mobicore             0600   system     system
+/dev/mobicore-user        0666   system     system
+/dev/t-base-tui           0666   system     system
+
+# Camera
+/dev/camera-sysram        0660   system     camera
+/dev/camera-isp           0660   system     camera
+/dev/camera-fdvt          0660   system     camera
+/dev/camera-pipemgr       0660   system     camera
+/dev/kd_camera_hw         0660   system     camera
+/dev/kd_camera_flashlight 0660   system     camera
+/dev/kd_camera_hw_bus2    0660   system     camera
+/dev/FM50AF               0660   system     camera
+/dev/CAM_CAL_DRV          0660   system     camera
+/dev/MAINAF               0660   system     camera
+/dev/SUBAF                0660   system     camera
 
 # add the read write right of ttyUSB*
 /dev/bus/usb/*     	  0660   root       usb
@@ -72,7 +96,6 @@
 /dev/ccci_aud             0660   audio      audio
 /dev/ccci2_aud            0660   audio      audio
 /dev/eemcs_aud            0660   audio      audio
-/dev/tfa9897		  	  0660	 media	    media
 /dev/irtx                 0660   system     system
 /dev/ir-learning          0660   system     system
 
@@ -80,13 +103,13 @@
 /dev/pvrsrvkm             0666   root       root
 /dev/pvr_sync             0666   root       root
 
-
+# LED
 /sys/devices/platform/leds-mt65xx/leds/green   delay_on      0664  system   system
-/sys/devices/platform/leds-mt65xx/leds/green   delay_off      0664  system   system
-/sys/devices/platform/leds-mt65xx/leds/red   delay_on      0664  system   system
-/sys/devices/platform/leds-mt65xx/leds/red   delay_off      0664  system   system
-/sys/devices/platform/leds-mt65xx/leds/blue   delay_on      0664  system   system
-/sys/devices/platform/leds-mt65xx/leds/blue   delay_off      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/green   delay_off     0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/red     delay_on      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/red     delay_off     0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/blue    delay_on      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/blue    delay_off     0664  system   system
 
 #GPIO
 /dev/mtgpio               0600   radio      root

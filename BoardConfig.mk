@@ -1,11 +1,11 @@
-# Copyright (C) 2013-2016, The CyanogenMod Project
-# Copyright (C) 2017-2018, The LineageOS Project
+#
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -156,8 +156,8 @@ BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril/
-BOARD_PROVIDES_RILD := true
+#BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril/
+#BOARD_PROVIDES_RILD := true
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
@@ -230,3 +230,11 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/hidl/manifest.xml
 
 #allow missing dependencies
 ALLOW_MISSING_DEPENDENCIES ?= true
+
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/lib/libgui.so|libshim_gui.so \
+    /system/lib/libnetutils.so|libshim_ifc.so \
+    /system/lib/libui.so|libshim_ui.so \
+    /system/vendor/lib/libcam.camadapter.so|libshim_cam.so
+

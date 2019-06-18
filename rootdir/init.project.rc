@@ -101,6 +101,15 @@ on post-fs-data
     chmod 0664 /proc/mtk_battery_cmd/current_cmd
     chmod system system /proc/mtk_battery_cmd/current_cmd
 
+on post-fs-data
+
+# Sar Sensor
+    chmod 0666 /sys/bus/i2c/devices/2-0028/calibrate
+    chown system system /sys/bus/i2c/devices/2-0028/calibrate
+    chmod 0666 /sys/devices/bus/11009000.i2c/i2c-2/2-0028/calibrate
+    chown system system /sys/devices/bus/11009000.i2c/i2c-2/2-0028/calibrate
+
+
 #Camera
     chmod 0660 /dev/MAINAF
     chown system camera /dev/MAINAF
@@ -113,32 +122,31 @@ on post-fs-data
 
     chmod 0660 /dev/GAF001AF
     chown system camera /dev/GAF001AF
-   
+
     chmod 0660 /dev/DW9714AF
     chown system camera /dev/DW9714AF
 
-   
-    chmod 0660 /dev/AD5820AF
-    chown system camera /dev/AD5820AF
-    
-	chmod 0660 /dev/BU64745GWZAF
-    chown system camera /dev/BU64745GWZAF
-#wangkangmin@wind-mobi.com 20161206 add for camera af and BB otp begin
     chmod 0660 /dev/DW9718AF
     chown system camera /dev/DW9718AF
 
-    chmod 0660 /dev/DW9718QTAF
-    chown system camera /dev/DW9718QTAF
+    chmod 0660 /dev/DW9718AF_QT
+    chown system camera /dev/DW9718AF_QT
 
-    chmod 0660 /dev/CAM_CAL_DRV1
-    chown system camera /dev/CAM_CAL_DRV1
+    chmod 0660 /dev/DW9718AF_HLT
+    chown system camera /dev/DW9718AF_HLT
 
-    chmod 0660 /dev/CAM_CAL_DRV2
-    chown system camera /dev/CAM_CAL_DRV2
+    chmod 0660 /dev/DW9718AF_BLX
+    chown system camera /dev/DW9718AF_BLX
 
-    chmod 0660 /dev/CAM_CAL_DRV3
-    chown system camera /dev/CAM_CAL_DRV3
-#wangkangmin@wind-mobi.com 20161206 add for camera af and BB otp end
+	chmod 0660 /dev/LC898212AF
+    chown system camera /dev/LC898212AF
+
+    chmod 0660 /dev/AD5820AF
+    chown system camera /dev/AD5820AF
+
+	chmod 0660 /dev/BU64745GWZAF
+    chown system camera /dev/BU64745GWZAF
+
 #SMB
     chown system system /proc/smb/ScreenComm
     chmod 0660 /proc/smb/ScreenComm
@@ -190,6 +198,12 @@ on post-fs-data
     chown system system /sys/bus/i2c/drivers/ltr778/ps
     chown system system /sys/bus/i2c/drivers/ltr778/status
     chown system system /sys/bus/i2c/drivers/ltr778/stowed
+# Battery Charging
+    chmod 0666 /sys/devices/platform/battery/Charging_disable
+
+# Hardware Touch Keys
+    chmod 0666 /sys/devices/virtual/touchscreen/touchscreen_dev/tp_simulate_switch
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/tp_simulate_switch
 
 on init
     # Refer to http://source.android.com/devices/tech/storage/index.html

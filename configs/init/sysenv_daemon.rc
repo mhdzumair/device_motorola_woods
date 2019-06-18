@@ -1,0 +1,12 @@
+on property:vold.decrypt=trigger_restart_min_framework
+    start sysenv_daemon
+
+on property:vold.decrypt=trigger_restart_framework
+    start sysenv_daemon
+
+service sysenv_daemon /vendor/bin/sysenv_daemon
+    class main
+    user system
+    group system
+    oneshot
+

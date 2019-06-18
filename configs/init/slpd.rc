@@ -1,0 +1,4 @@
+service slpd /vendor/bin/slpd
+    class main
+    user gps
+    group gps inet

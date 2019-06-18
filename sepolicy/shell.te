@@ -137,3 +137,5 @@ allow shell memsicd_exec:file rx_file_perms;
 allow shell istd8303_exec:file rx_file_perms;
 allow shell matv_exec:file rx_file_perms;
 allow shell dmlog_exec:file rx_file_perms;
+allow shell gsm0710muxdmd2_exec:file rx_file_perms;
+allow shell mtkrildmd2_exec:file rx_file_perms;
