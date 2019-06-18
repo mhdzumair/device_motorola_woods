@@ -240,3 +240,7 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib/libui.so|libshim_ui.so \
     /system/vendor/lib/libcam.camadapter.so|libshim_cam.so
 
+# LineageHW
+BOARD_USES_LINEAGE_HARDWARE := true
+BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/lineagehw
+TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/i2c-2/2-004b/wake_gesture_enable"

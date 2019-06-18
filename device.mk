@@ -195,6 +195,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     mtk_symbols
 
+# MTK Helpers
+PRODUCT_PACKAGES += \
+        libccci_util \
+        libmtk_symbols
+
 # Fingerprint HAL & pack
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service \
