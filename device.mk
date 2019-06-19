@@ -120,7 +120,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.mt6735:root/fstab.mt6735 \
     $(LOCAL_PATH)/rootdir/init.microtrust.rc:root/init.microtrust.rc \
     $(LOCAL_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
-    $(DEVICE_PATH)/rootdir/init.sensor_1_0.rc:root/init.sensor_1_0.rc \
+    $(LOCAL_PATH)/rootdir/init.sensor_1_0.rc:root/init.sensor_1_0.rc \
     $(LOCAL_PATH)/rootdir/init.mt6735.power.rc:root/init.mt6735.power.rc
 
 # Audio
