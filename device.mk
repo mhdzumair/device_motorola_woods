@@ -133,7 +133,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CMActions
 
-# FM Radio
+# EngineerMode
 PRODUCT_PACKAGES += \
     EngineerMode
 
