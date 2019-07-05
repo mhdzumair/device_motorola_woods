@@ -1,0 +1,23 @@
+From 6906e51c2d7dcd6e238edf492e6a28205c961d5f Mon Sep 17 00:00:00 2001
+From: svoboda18 <ruspam18@gmail.com>
+Date: Fri, 09 Nov 2018 10:44:00 +0000
+Subject: [PATCH] Show Name Instand Of Number Of Operator.
+
+diff --git a/src/java/com/android/internal/telephony/SubscriptionController.java b/src/java/com/android/internal/telephony/SubscriptionController.java
+index e1824512f..d412213ff 100644
+--- a/src/java/com/android/internal/telephony/SubscriptionController.java
++++ b/src/java/com/android/internal/telephony/SubscriptionController.java
+@@ -306,6 +313,11 @@ private SubscriptionInfo getSubInfoRecord(Cursor cursor) {
+                     + " userNwMode:" + userNwMode);
+         }
+ 
++        //if (isNumeric(carrierName)) {
++            carrierName = displayName;
++            //logd("[getSubInfoRecord] carrierName changed to: " + displayName);
++        //}
++
+         // If line1number has been set to a different number, use it instead.
+         String line1Number = mTelephonyManager.getLine1Number(id);
+         if (!TextUtils.isEmpty(line1Number) && !line1Number.equals(number)) {
+--
+2.7

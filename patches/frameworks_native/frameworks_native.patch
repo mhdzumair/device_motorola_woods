@@ -7,7 +7,6 @@ Change-Id: I105c019d026520bd02314da20ecbb7f15435e7a9
 ---
  include/gui/BufferQueueCore.h        |   3 +-
  include/gui/IProducerListener.h      |   6 ++
- include/media/openmax/OMX_IVCommon.h |  11 +++
  include/ui/Fence.h                   |  15 ++--
  include/ui/mediatek/GuiExtMonitor.h  | 133 +++++++++++++++++++++++++++++++++++
  include/ui/mediatek/IDumpTunnel.h    |  49 +++++++++++++
@@ -47,7 +46,7 @@ index 4e54ddb..e4c9fad 100644
      // PID of the process which last successfully called connect(...)
      pid_t mConnectedPid;
  
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      // mLinkedToDeath is used to set a binder death notification on
      // the producer.
      sp<IProducerListener> mLinkedToDeath;
@@ -64,7 +63,7 @@ index b7826c6..e5a5a45 100644
      // This is called without any lock held and can be called concurrently by
      // multiple threads.
      virtual void onBufferReleased() = 0; // Asynchronous
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      virtual bool needsReleaseNotify() = 0;
 +#endif
  };
@@ -74,7 +73,7 @@ index b7826c6..e5a5a45 100644
  public:
      virtual status_t onTransact(uint32_t code, const Parcel& data,
              Parcel* reply, uint32_t flags = 0);
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      virtual bool needsReleaseNotify();
 +#endif
  };
@@ -83,34 +82,12 @@ index b7826c6..e5a5a45 100644
  {
  public:
      virtual void onBufferReleased() {}
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      virtual bool needsReleaseNotify() { return false; }
 +#endif
  };
  
  } // namespace android
-diff --git a/include/media/openmax/OMX_IVCommon.h b/include/media/openmax/OMX_IVCommon.h
-index f9b6f4b..05317cd 100644
---- a/include/media/openmax/OMX_IVCommon.h
-+++ b/include/media/openmax/OMX_IVCommon.h
-@@ -164,6 +164,17 @@ typedef enum OMX_COLOR_FORMATTYPE {
-      *  codec can substitute any YUV420 packed planar or semiplanar
-      *  format for it. */
-     OMX_COLOR_FormatYUV420Flexible = 0x7F420888,
-+    #ifdef MTK_HARDWARE
-+    OMX_COLOR_FormatVendorMTKYUV = 0x7F000001,
-+    OMX_COLOR_FormatVendorMTKYUV_FCM = 0x7F000002,
-+    OMX_COLOR_FormatVendorMTKYUV_UFO = 0x7F000003,
-+    OMX_COLOR_FormatVendorMTKYUV_10BIT_H = 0x7F000004,
-+    OMX_COLOR_FormatVendorMTKYUV_10BIT_V = 0x7F000005,
-+    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_H = 0x7F000006,
-+    OMX_COLOR_FormatVendorMTKYUV_UFO_10BIT_V = 0x7F000007,
-+    OMX_MTK_COLOR_FormatYV12 = 0x7F000200,
-+    OMX_MTK_COLOR_FormatBitStream = 0x7F000300,
-+    #endif
- 
-     OMX_TI_COLOR_FormatYUV420PackedSemiPlanar = 0x7F000100,
-     OMX_QCOM_COLOR_FormatYVU420SemiPlanar = 0x7FA30C00,
 diff --git a/include/ui/Fence.h b/include/ui/Fence.h
 index 48a7aa3..4e68952 100644
 --- a/include/ui/Fence.h
@@ -120,7 +97,7 @@ index 48a7aa3..4e68952 100644
  #include <utils/String8.h>
  #include <utils/Timers.h>
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  #include <experimental/optional>
 -
 +#endif
@@ -131,7 +108,7 @@ index 48a7aa3..4e68952 100644
      // becomes signaled when both f1 and f2 are signaled (even if f1 or f2 is
      // destroyed before it becomes signaled).  The name argument specifies the
      // human-readable name to associated with the new Fence object.
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      static sp<Fence> merge(const char* name, const sp<Fence>& f1,
              const sp<Fence>& f2);
 -
@@ -144,7 +121,7 @@ index 48a7aa3..4e68952 100644
      // occurs then -1 is returned.
      nsecs_t getSignalTime() const;
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  #if __cplusplus > 201103L
      // hasSignaled returns whether the fence has signaled yet. Prefer this to
      // getSignalTime() or wait() if all you care about is whether the fence has
@@ -161,7 +138,7 @@ index 48a7aa3..4e68952 100644
      const Fence& operator = (const Fence& rhs) const;
  
      int mFenceFd;
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +private:
 +    void dump(int fd);
 +#endif
@@ -420,7 +397,7 @@ index 0889aaf..718282d 100644
  	SurfaceComposerClient.cpp \
  	SyncFeatures.cpp \
 +	
-+ifndef MTK_HARDWARE
++ifndef MTK_NATIVE_HARDWARE
 +LOCAL_SRC_FILES += \
 +	GraphicsEnv.cpp
 +endif
@@ -435,7 +412,7 @@ index d610971..efd7723 100644
      mConsumerListener(),
      mConsumerUsageBits(0),
      mConnectedApi(NO_CONNECTED_API),
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      mLinkedToDeath(),
 +#endif
      mConnectedProducerListener(),
@@ -449,15 +426,15 @@ index ff85eb5..41c6814 100644
                          BQ_LOGE("connect: linkToDeath failed: %s (%d)",
                                  strerror(-status), status);
                      }
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
                      mCore->mLinkedToDeath = listener;
 +#endif
                  }
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
                  if (listener->needsReleaseNotify()) {
 +#endif
                      mCore->mConnectedProducerListener = listener;
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
                  }
 +#endif
              }
@@ -467,7 +444,7 @@ index ff85eb5..41c6814 100644
                      mCore->freeAllBuffersLocked();
  
                      // Remove our death notification callback if we have one
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
                      if (mCore->mLinkedToDeath != NULL) {
                          sp<IBinder> token =
                                  IInterface::asBinder(mCore->mLinkedToDeath);
@@ -483,7 +460,7 @@ index ff85eb5..41c6814 100644
                      }
                      mCore->mSharedBufferSlot =
                              BufferQueueCore::INVALID_BUFFER_SLOT;
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
                      mCore->mLinkedToDeath = NULL;
 +#endif
                      mCore->mConnectedProducerListener = NULL;
@@ -497,7 +474,7 @@ index 3cf3078..25bf4e9 100644
      }
  
      if (!mSlots[slot].mFence.get()) {
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
          mSlots[slot].mFence = fence;
          return OK;
      }
@@ -524,7 +501,7 @@ index 10e999c..a860e0f 100644
          EGL_NONE,
      };
      if (!crop.isValid()) {
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
          // No crop rect to set, so leave the crop out of the attrib array. Make
          // sure to propagate the protected content attrs if they are set.
          attrs[2] = attrs[10];
@@ -539,7 +516,7 @@ index 10e999c..a860e0f 100644
          // EGLImage because that's not allowed by the EGL_ANDROID_image_crop
          // extension.  In the future we can add a layered extension that
          // removes this restriction if there is hardware that can support it.
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
          attrs[2] = attrs[10];
          attrs[3] = attrs[11];
          attrs[4] = EGL_NONE;
@@ -557,7 +534,7 @@ index da54ce1..da5f65e 100644
  
  enum {
      ON_BUFFER_RELEASED = IBinder::FIRST_CALL_TRANSACTION,
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      NEEDS_RELEASE_NOTIFY,
 +#endif
  };
@@ -568,7 +545,7 @@ index da54ce1..da5f65e 100644
          remote()->transact(ON_BUFFER_RELEASED, data, &reply, IBinder::FLAG_ONEWAY);
      }
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      virtual bool needsReleaseNotify() {
          bool result;
          Parcel data, reply;
@@ -584,7 +561,7 @@ index da54ce1..da5f65e 100644
              CHECK_INTERFACE(IProducerListener, data, reply);
              onBufferReleased();
              return NO_ERROR;
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
          case NEEDS_RELEASE_NOTIFY:
              CHECK_INTERFACE(IProducerListener, data, reply);
              reply->writeBool(needsReleaseNotify());
@@ -594,7 +571,7 @@ index da54ce1..da5f65e 100644
      return BBinder::onTransact(code, data, reply, flags);
  }
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  bool BnProducerListener::needsReleaseNotify() {
      return true;
  }
@@ -609,7 +586,7 @@ index d59b37c..df33860 100644
      return mClient->setBlurMaskAlphaThreshold(mHandle, alpha);
  }
  status_t SurfaceControl::setPosition(float x, float y) {
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +    const float ub = 20000.0;
 +    const float lb = -20000.0;
 +    if (CC_UNLIKELY(x > ub)) {
@@ -648,8 +625,8 @@ index 2b16365..d4436bc 100644
  	libutils \
  	liblog
 +	
-+ifeq ($(BOARD_USES_MTK_HARDWARE),true)
-+LOCAL_CFLAGS += -DMTK_HARDWARE
++ifeq ($(BOARD_USES_MTK_NATIVE_HARDWARE),true)
++LOCAL_CFLAGS += -DMTK_NATIVE_HARDWARE
 +	LOCAL_CPPFLAGS += -Wno-extra-semi -Wno-zero-length-array -Wno-gnu-statement-expression
 +	LOCAL_CPPFLAGS += -D__STDC_FORMAT_MACROS
 +
@@ -672,7 +649,7 @@ index 5531b23..f83c214 100644
      if (err < 0 && errno == ETIME) {
          ALOGE("%s: fence %d didn't signal in %u ms", logname, mFenceFd,
                  warningTimeout);
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +        dump(mFenceFd);
 +#endif
 +
@@ -681,7 +658,7 @@ index 5531b23..f83c214 100644
      return err < 0 ? -errno : status_t(NO_ERROR);
  }
 -
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +sp<Fence> Fence::merge(const String8& name, const sp<Fence>& f1,
 +        const sp<Fence>& f2) {
 +    ATRACE_CALL();
@@ -727,7 +704,7 @@ index df31d5f..2105edb 100644
  // Buffer and implementation of ANativeWindowBuffer
  // ===========================================================================
  
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +class GraphicBufferStubDecker {
 + public:
 +  ~GraphicBufferStubDecker();
@@ -1029,7 +1006,7 @@ index 2e18698..635db44 100644
  #define EGL_MUTABLE_RENDER_BUFFER_BIT_KHR 0x1000
  #endif
  
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +void* egl_GVR_FrontBuffer(const EGLSurface surface);
 +void* EGL_SEC_getClientBufferForFrontBuffer(EGLSurface surface);
 +#endif
@@ -1040,7 +1017,7 @@ index 2e18698..635db44 100644
  typedef EGLAPI EGLBoolean (EGLAPIENTRYP PFNEGLQUERYTIMESTAMPSUPPORTEDANDROID) (EGLDisplay dpy, EGLSurface surface, EGLint timestamp);
  #endif
  #endif
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +void* egl_GVR_FrontBuffer(const EGLSurface surface);
 +void* EGL_SEC_getClientBufferForFrontBuffer(EGLSurface surface);
 +#define EGL_IS_INVALID_MTK    0x43210001
@@ -1057,7 +1034,7 @@ index 4234db8..b402a31 100644
      return NULL;
  }
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  static void* do_dlopen(const char* path, int mode) {
      ATRACE_CALL();
      return dlopen(path, mode);
@@ -1072,7 +1049,7 @@ index 4234db8..b402a31 100644
  
  // ----------------------------------------------------------------------------
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  Loader::Loader()
      : getProcAddress(NULL),
        mLibGui(nullptr),
@@ -1087,14 +1064,14 @@ index 4234db8..b402a31 100644
 +}
 +#endif
  Loader::~Loader() {
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      if (mLibGui)
          dlclose(mLibGui);
 +#endif
  }
  
  static void* load_wrapper(const char* path) {
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      void* so = do_dlopen(path, RTLD_NOW | RTLD_LOCAL);
 +#else
 +    void* so = dlopen(path, RTLD_NOW | RTLD_LOCAL);
@@ -1107,7 +1084,7 @@ index 4234db8..b402a31 100644
      }
  }
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  static void* load_system_driver(const char* kind) {
 +#else
 +void *Loader::load_driver(const char* kind,
@@ -1122,7 +1099,7 @@ index 4234db8..b402a31 100644
      }
      const char* const driver_absolute_path = absolutePath.string();
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      void* dso = do_dlopen(driver_absolute_path, RTLD_NOW | RTLD_LOCAL);
 +#else
 +    void* dso = dlopen(driver_absolute_path, RTLD_NOW | RTLD_LOCAL);
@@ -1135,7 +1112,7 @@ index 4234db8..b402a31 100644
  
      ALOGD("loaded %s", driver_absolute_path);
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      return dso;
  }
  
@@ -1148,7 +1125,7 @@ index 4234db8..b402a31 100644
      if (mask & EGL) {
          getProcAddress = (getProcAddressType)dlsym(dso, "eglGetProcAddress");
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
          ALOGE_IF(!getProcAddress,
                  "can't find eglGetProcAddress() in EGL driver library");
 -
@@ -1168,7 +1145,7 @@ index 04a8e41..bc5a1c7 100644
  #include <utils/Singleton.h>
  #include <utils/String8.h>
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  #include <gui/GraphicsEnv.h>
 -
 +#endif
@@ -1180,7 +1157,7 @@ index 04a8e41..bc5a1c7 100644
      
      getProcAddressType getProcAddress;
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      void* mLibGui;
      decltype(android_getDriverNamespace)* mGetDriverNamespace;
 -
@@ -1196,7 +1173,7 @@ index 0cd8b02..29289c0 100644
      { "eglCreateStreamFromFileDescriptorKHR",
              (__eglMustCastToProperFunctionPointerType)&eglCreateStreamFromFileDescriptorKHR },
  
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +    { "egl_GVR_FrontBuffer",
 +            (__eglMustCastToProperFunctionPointerType)&egl_GVR_FrontBuffer },
 +    { "EGL_SEC_getClientBufferForFrontBuffer",
@@ -1209,7 +1186,7 @@ index 0cd8b02..29289c0 100644
          return setError(EGL_BAD_SURFACE, EGL_FALSE);
  
      egl_surface_t const * const s = get_surface(surface);
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +    if (attribute == EGL_IS_INVALID_MTK)
 +    {
 +        int tmp_w;
@@ -1226,7 +1203,7 @@ index 0cd8b02..29289c0 100644
          // this will ALOGE the error
          egl_connection_t* const cnx = &gEGLImpl;
          result = setError(cnx->egl.eglGetError(), EGL_FALSE);
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +        if (NULL != cur_c)
 +        {
 +            SurfaceRef _cur_r(get_surface(cur_c->read));
@@ -1246,7 +1223,7 @@ index 0cd8b02..29289c0 100644
                      if (value & EGL_NATIVE_BUFFER_USAGE_TEXTURE_BIT_ANDROID) {
                          usage |= GRALLOC_USAGE_HW_TEXTURE;
                      }
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +                    // The buffer must be used for either a texture or a
 +                    // renderbuffer.
 +                    if ((value & EGL_NATIVE_BUFFER_USAGE_RENDERBUFFER_BIT_ANDROID) &&
@@ -1261,7 +1238,7 @@ index 0cd8b02..29289c0 100644
      return EGL_FALSE;
  }
  
-+#ifdef MTK_HARDWARE
++#ifdef MTK_NATIVE_HARDWARE
 +void* egl_GVR_FrontBuffer(const EGLSurface surface)
 +{
 +    clearError();
@@ -1322,7 +1299,7 @@ index ba99d0c..6cd3f5f 100644
  
  #include <android/dlext.h>
  #include <cutils/properties.h>
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  #include <gui/GraphicsEnv.h>
 -
 +#endif
@@ -1334,7 +1311,7 @@ index ba99d0c..6cd3f5f 100644
  
  Hal Hal::hal_;
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
  void* LoadLibrary(const android_dlextinfo& dlextinfo,
                    const char* subname,
                    int subname_len) {
@@ -1350,7 +1327,7 @@ index ba99d0c..6cd3f5f 100644
      // Use a stub device unless we successfully open a real HAL device.
      hal_.dev_ = &stubhal::kDevice;
 -
-+#ifndef MTK_HARDWARE
++#ifndef MTK_NATIVE_HARDWARE
      int result;
      const hwvulkan_module_t* module = nullptr;
  

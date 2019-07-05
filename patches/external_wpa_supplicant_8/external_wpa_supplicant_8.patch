@@ -1,0 +1,28 @@
+From 42c0269dc4a7f2fbc43d492af4677219b3bbe486 Mon Sep 17 00:00:00 2001
+From: fire855 <thefire855@gmail.com>
+Date: Sun, 10 Apr 2016 03:10:50 +0200
+Subject: [PATCH] Ignore fake nvram wifi
+
+Change-Id: I66ad4b7ed4ac29434977e040c7adddd5fe0bbb59
+---
+ wpa_supplicant/bss.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/wpa_supplicant/bss.c b/wpa_supplicant/bss.c
+index 3687a2e..b0e16a4 100644
+--- a/wpa_supplicant/bss.c
++++ b/wpa_supplicant/bss.c
+@@ -447,6 +447,10 @@ static struct wpa_bss * wpa_bss_add(struct wpa_supplicant *wpa_s,
+ 		wpa_s->conf->bss_max_count = wpa_s->num_bss + 1;
+ 	}
+ 
++	if (strncmp(wpa_ssid_txt(ssid, ssid_len), "NVRAM WARNING: Err =", strlen("NVRAM WARNING: Err =")) == 0) {
++	    return NULL;
++	}
++
+ 	dl_list_add_tail(&wpa_s->bss, &bss->list);
+ 	dl_list_add_tail(&wpa_s->bss_id, &bss->list_id);
+ 	wpa_s->num_bss++;
+-- 
+2.18.0
+
