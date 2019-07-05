@@ -1,4 +1,4 @@
-#ifneq ($(filter 6753, $(TARGET_DEVICE)),)
+#ifneq ($(filter 6735, $(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
