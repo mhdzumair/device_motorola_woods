@@ -186,6 +186,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
+# MiraVision
+PRODUCT_PACKAGES += \
+    MiraVision
+
 # Keyhandler package
 PRODUCT_PACKAGES += \
     com.cyanogenmod.keyhandler
