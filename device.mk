@@ -57,5 +57,4 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, vendor/mad/config/common.mk)
 
 # Vendor
-$(call inherit-product, vendor/coolpad/note3/note3-vendor.mk)
-$(call inherit-product, vendor/coolpad/note3/note3lite-firmware-blobs.mk)
+$(call inherit-product, vendor/motorola/woods/woods-vendor.mk)
