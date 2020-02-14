@@ -113,7 +113,7 @@ TARGET_OTA_ASSERT_DEVICE := Moto_E4,Moto E4,E4,e4,woods,woods_f,woods_retail
 
 
 # CWM
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.mt6735
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.mt6735
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
