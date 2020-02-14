@@ -1,4 +1,0 @@
-service fuelgauged /vendor/bin/fuelgauged
-    class main
-    user root
-    group root

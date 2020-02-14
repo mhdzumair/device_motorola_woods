@@ -34,39 +34,8 @@ PRODUCT_NAME := lineage_woods
 PRODUCT_BRAND := Motorola
 PRODUCT_MODEL := Moto E4
 PRODUCT_MANUFACTURER := Motorola
-
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT=motorola/woods/woods:7.1.1/NMA26.42-113/133:user/release-keys \
     PRIVATE_BUILD_DESC="woods_retail-user 7.1.1 NMA26.42-11-3 release-keys"
-
-    #PRODUCT_NAME="Moto E4"
-
-PRODUCT_GMS_CLIENTID_BASE := android-motorola
-
-# Available languages
-PRODUCT_LOCALES := en_US en_GB ru_RU uk_UA tr_TR sk_SK vi_VN fr_FR ar_EG pt_BR
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-	ro.crypto.state=unencrypted \
-        ro.mount.fs=EXT4 \
-	ro.secure=0 \
-        ro.adb.secure=0 \
-	ro.allow.mock.location=1 \
-        ro.debuggable=1 \
-	persist.sys.usb.config = mtp,adb \
-	persist.service.adb.enable=1 \
-	persist.service.debuggable=1
-
-# Bootanimation
-TARGET_BOOTANIMATION_NAME := 720
-TARGET_BOOT_ANIMATION_RES := 720
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-
-PRODUCT_RESTRICT_VENDOR_FILES := false
-
-# Build property overrides
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_UTC_DATE=0

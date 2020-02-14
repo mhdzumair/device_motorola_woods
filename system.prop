@@ -8,7 +8,7 @@ ro.board.platform=mt6737m
 ro.sf.lcd_density=320
 persist.sys.lcd_density=320
 
-ro.opengles.version=196610
+ro.opengles.version=196609
 
 # USB MTP WHQL
 ro.sys.usb.mtp.whql.enable=0
@@ -162,9 +162,6 @@ ro.sf.lcd_density=320
 
 # OMX
 mtk.vdec.waitkeyframeforplay=1
-
-# OpenGL
-ro.opengles.version=196609
 
 # Remove red borders
 persist.sys.strictmode.visual=0

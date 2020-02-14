@@ -1,62 +1,15 @@
-# Copyright (C) 2012 The Android Open Source Project
-#
-# IMPORTANT: Do not create world writable files or directories.
-# This is a common source of Android security bugs.
-#
-
-on early-init
-    write /sys/class/net/ccmni0/queues/rx-0/rps_cpus "ff"
-    write /sys/class/net/ccmni1/queues/rx-0/rps_cpus "ff"
-    write /sys/class/net/ccmni2/queues/rx-0/rps_cpus "ff"
-    write /sys/class/net/ccmni0/queues/rx-0/rps_flow_cnt "1000"
-    write /sys/class/net/ccmni1/queues/rx-0/rps_flow_cnt "1000"
-    write /sys/class/net/ccmni2/queues/rx-0/rps_flow_cnt "1000"
-    setprop net.perf.tether.rps 0f
-    setprop net.perf.rps.default ff
-    setprop net.perf.tether.cpu.core 4,4,0,0
-    setprop net.perf.tether.cpu.freq 1248000,1248000,0,0
-    setprop net.perf.internal.cpu.core 2,2,0,0
-    setprop net.perf.internal.cpu.freq 858000,858000,0,0
-
 on post-fs-data
-
-    write /proc/bootprof "post-fs-data: on modem start"
-
     # Modem related device nodes
-    mkdir /data/nvram/md  0770 root system
-
     chown radio radio /sys/kernel/ccci/boot
-    chown radio radio /dev/ccci_fs
-    chown radio radio /dev/ccci_ioctl0
-    chown radio radio /dev/ccci_ioctl1
-    chown radio radio /dev/ccci_ipc_1220_0
-    chown radio radio /dev/ccci_monitor
-    chown media audio /dev/ccci_aud
-    chmod 660 /dev/ccci_aud
 
     # SELinux
     mkdir /data/ccci_cfg 0770 system radio
-    mkdir /data/mdlog 0775 shell system
-
     restorecon /data/ccci_cfg
     restorecon_recursive /protect_f
     restorecon_recursive /protect_s
-    
+
     # ignore permission check
     write /data/ccci_cfg/md_new_ver.1 "flag"
     chmod 0660 /data/ccci_cfg/md_new_ver.1
+
     setprop vold.post_fs_data_done 1
-
-    # Clear the sim switch flag
-    setprop persist.radio.simswitch ""
-    
-#
-#  Modem related services (End)
-#
-    # Encrypt phone function
-    setprop vold.post_fs_data_done 1
-
-
-on property:ril.muxreport=1
-    start muxreport-daemon
-
