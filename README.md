@@ -71,4 +71,5 @@ when building with : `PRODUCT_PACKAGES += android.hardware.sensors@1.0-service` 
 
 see line here : https://github.com/LineageOS/android_hardware_interfaces/blob/621821f3191754678125a44a1f9b4dbd69f76541/sensors/1.0/default/Sensors.cpp#L98
 
-- -
+-For get adb logcat without past machine adb public key change this auth_required to false in system/core/adb/adbd_auth.cpp
+`nano +47 system/core/adb/adbd_auth.cpp`
